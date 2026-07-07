@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settlement - Effortless Group Balances</title>
+    <!-- Central Shared Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+      <!-- Unique styles strictly for the index page layout -->
+      <style>
+        :root {
+            --bg-color: #1A1D24;
+            --card-color: #232731;
+            --accent-color: #64DFDF; /* Soft, relaxed teal/mint */
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            margin-left: 20px;
+        }
+        
+        nav a.active {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        /* --- UPDATED RESPONSIVE CSS STYLES --- */
+
+/* Hero Section Base */
+.hero {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #12151C;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+/* Responsive Video Mockup Frame */
+.hero-image {
+    background: var(--card-color);
+    width: 100%;
+    height: 380px; /* Desktop Height */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- THE MOBILE BREAKPOINT FIX --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr; /* Force elements to stack vertically */
+        text-align: center;
+        margin: 20px auto;
+        gap: 30px;
+    }
+    
+    .hero h1 {
+        font-size: 32px; /* Shrink massive heading text so it fits small screens */
+    }
+
+    .hero-image {
+        order: -1; /* Pushes the video demo to the VERY TOP on phones so users see it instantly */
+        height: 240px; /* Shrinks the box height down so it matches mobile phone aspect ratios */
+    }
+    
+    #transaction-counter {
+        font-size: 32px; /* Scales down the tracker text so it doesn't clip */
+    }
+}
+
+
+        /* Features Section */
+        .features {
+            max-width: 1100px;
+            margin: 100px auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 32px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="settlement-logo.svg" alt="Settlement Logo" style="width: 140px; height: 140px; vertical-align: middle; margin-right: 10px;">
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Settle balances across the entire chain.</h1>
+            <p>Whether it's friends, roommates, or complete strangers across a network—Settlement links transactions securely to balance what you owe with what you're owed automatically.</p>
+            <a href="settlement.apk" download class="cta-btn">Download the APK</a>
+            <p style="color: var(--text-muted); font-size: 12px; margin-top: 10px;">
+                *To install, ensure <strong>"Allow installation from unknown sources"</strong> is enabled in your settings. Verified secure.
+            </p>
+        </div>
+        
+        <!-- Video Demo Container -->
+			<div class="hero-image">
+  <video id="demoVideo" autoplay loop muted playsinline aria-hidden="true">
+    <source src="demo-walkthrough.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button id="toggleBtn" class="unmute">🔊 Unmute</button>
+</div>
+
+<script>
+  const video = document.getElementById('demoVideo');
+  const btn = document.getElementById('toggleBtn');
+
+  // Fade-in effect triggers automatically
+  window.addEventListener('load', () => {
+    btn.style.opacity = 1;
+  });
+
+  btn.addEventListener('click', () => {
+    if (video.muted) {
+      video.muted = false;
+      btn.textContent = "🔇 Mute";
+      btn.classList.remove("unmute");
+      btn.classList.add("mute");
+    } else {
+      video.muted = true;
+      btn.textContent = "🔊 Unmute";
+      btn.classList.remove("mute");
+      btn.classList.add("unmute");
+    }
+    video.play(); // ensure playback continues
+  });
+</script>
+
+
+
+
+
+    </section>
+
+    <!-- Live Counter Section -->
+    <section class="counter-section" style="background: var(--card-color); max-width: 1100px; margin: 40px auto; padding: 40px; border-radius: 16px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.03);">
+        <h3 style="color: var(--text-muted); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">
+            Global Network Volume
+        </h3>
+        <div id="transaction-counter" style="font-size: 48px; font-weight: 800; color: var(--accent-color); font-family: monospace; letter-spacing: -1px; margin-bottom: 5px;">
+            0
+        </div>
+        <p style="color: var(--text-muted); font-size: 14px;">
+            Total liabilities structuralized and reduced to zero worldwide.
+        </p>
+    </section>
+
+    <section class="features">
+        <h2>How it works</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>1. Peer-to-Peer Chains</h3>
+                <p>A owes B, and B owes C. Settlement automatically routes the logic so A pays C directly. No middle steps required.</p>
+            </div>
+            <div class="card">
+                <h3>2. Complete Privacy</h3>
+                <p>Settle debts securely across networks without sharing personal financial histories. Your security is baked into the ledger code.</p>
+            </div>
+            <div class="card">
+                <h3>3. For Everyone</h3>
+                <p>Built for splitting rent, dividing dinner tabs, or managing complex pool finances seamlessly without the math headache.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Settlement App. All rights reserved. | <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Counter Logic Ticker Script -->
+<script>
+    // 1. Check if a saved count already exists in the user's browser, otherwise use the base benchmark
+    const BASE_COUNT = 99;
+    let startingTransactions = parseInt(localStorage.getItem('settlement_total_count')) || BASE_COUNT;
+    
+    const counterElement = document.getElementById('transaction-counter');
+
+    // 2. Smooth Initial Count-Up Animation
+    // If they just refreshed, start the count closer to the target so it's snappy
+    let currentCount = startingTransactions - 40; 
+    const targetCount = startingTransactions;
+    const animationDuration = 1200; // Snappier 1.2s load animation
+    const steps = 40;
+    const increment = Math.ceil((targetCount - currentCount) / steps);
+    const stepTime = animationDuration / steps;
+
+    const initialCounter = setInterval(() => {
+        currentCount += increment;
+        if (currentCount >= targetCount) {
+            currentCount = targetCount;
+            clearInterval(initialCounter);
+            startLiveTicker(); 
+        }
+        counterElement.textContent = currentCount.toLocaleString();
+    }, stepTime);
+
+    // 3. Infinite Live Ledger Ticker (Now saves to browser storage)
+    function startLiveTicker() {
+        setInterval(() => {
+            const newlySettled = Math.floor(Math.random() * 4) + 1; 
+            startingTransactions += newlySettled;
+            
+            // Save the newly updated number to the browser cache instantly
+            localStorage.setItem('settlement_total_count', startingTransactions);
+            
+            // Subtle flash animation for the tick
+            counterElement.style.opacity = '0.85';
+            setTimeout(() => {
+                counterElement.textContent = startingTransactions.toLocaleString();
+                counterElement.style.opacity = '1';
+            }, 100);
+
+        }, Math.floor(Math.random() * 3000) + 1500); 
+    }
+</script>
+</body>
+</html>

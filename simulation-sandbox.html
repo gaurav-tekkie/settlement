@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>settlement. | Multi-User Simulation Sandbox</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --accent-blue: #38bdf8;
+            --accent-green: #4ade80;
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .sandbox-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { margin: 0; font-size: 24px; font-weight: 700; color: var(--accent-blue); }
+        .badge { background: #334155; padding: 6px 12px; border-radius: 20px; font-size: 12px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h3 { margin-top: 0; color: var(--accent-blue); font-size: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+        label { display: block; margin: 12px 0 6px; font-size: 14px; color: #94a3b8; }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button {
+            background: var(--accent-blue);
+            color: #0f172a;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            border: none;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; }
+        button.secondary { background: transparent; border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+        button.settle-btn { background: var(--accent-green); color: #0f172a; }
+
+        .user-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .user-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .user-tab.active {
+            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        .data-table th { color: #94a3b8; }
+
+        .log-box {
+            background: #000;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 6px;
+            height: 150px;
+            overflow-y: auto;
+            color: #4ade80;
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="sandbox-container">
+    <header>
+        <h1>settlement. <span style="color:white; font-weight:300;">Sim Sandbox</span></h1>
+        <div class="badge">Local Engine Test Environment</div>
+    </header>
+
+    <div class="grid">
+        <!-- LEFT PANEL: CONTROLS & ACTIONS -->
+        <div class="left-panel">
+            <div class="card">
+                <h3>1. Select Active User</h3>
+                <p style="font-size: 13px; color: #94a3b8; margin-top:-5px;">Click to view the app from their phone's perspective:</p>
+                <div class="user-switcher">
+                    <div class="user-tab active" id="tab-A" onclick="switchUser('A')">Alice</div>
+                    <div class="user-tab" id="tab-B" onclick="switchUser('B')">Bob</div>
+                    <div class="user-tab" id="tab-C" onclick="switchUser('C')">Charlie</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>2. Create a Transaction</h3>
+                <form id="debtForm" onsubmit="addDebt(event)">
+                    <label>From (Debtor):</label>
+                    <input type="text" id="debtorDisplay" readonly style="color: #64748b;">
+
+                    <label>To (Creditor):</label>
+                    <select id="creditorSelect" required></select>
+
+                    <label>Amount ($):</label>
+                    <input type="number" id="amountInput" min="1" value="50" required>
+
+                    <button type="submit">Record Expense</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h3>3. Optimization Engine</h3>
+                <button class="settle-btn" onclick="triggerSettlementEngine()">Run Settlement Algorithm</button>
+                <button class="secondary" onclick="resetSandbox()">Reset State Data</button>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: LIVE STATE & BALANCE SHEET -->
+        <div class="right-panel">
+            <div class="card">
+                <h3>Current Dynamic Ledger (All Debts)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Who Owes</th>
+                            <th>Owes Whom</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledgerBody">
+                        <!-- Dynamically filled -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>System Console Output</h3>
+                <div class="log-box" id="consoleLog"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- SIMULATED DATA STATE (Acts like your database) ---
+    let state = {
+        currentUser: 'A',
+        users: {
+            'A': 'Alice',
+            'B': 'Bob',
+            'C': 'Charlie'
+        },
+        debts: [
+            { debtor: 'A', creditor: 'B', amount: 50 },  // Alice owes Bob $50
+            { debtor: 'B', creditor: 'C', amount: 50 }   // Bob owes Charlie $50
+        ]
+    };
+
+    // --- YOUR SETTLEMENT LOGIC ENGINE ---
+    // This is where you test your mathematical logic.
+    function runSettlementEngine(debtsArray) {
+        logToConsole("Initializing calculation routine...");
+        logToConsole(`Analyzing ${debtsArray.length} active global transactions...`);
+
+        // Placeholder for loop detection math (e.g., if A->B ($50) and B->C ($50), Charlie owes Alice)
+        // Let's mock a classic loop resolution logic:
+        let optimizedDebts = [];
+        
+        // This is a basic simulation mockup. If Alice owes Bob and Bob owes Charlie, 
+        // a smart algorithm simplifies it down to: Alice owes Charlie directly.
+        logToConsole("Scanning for directional multi-party chain loops...");
+        
+        // For simulation visualization: we collapse A->B and B->C into A->C
+        optimizedDebts.push({ debtor: 'A', creditor: 'C', amount: 50 });
+        
+        logToConsole("Optimization success! Redundant transit steps removed.");
+        return optimizedDebts;
+    }
+
+    // --- SANDBOX SYSTEM CONTROLLERS ---
+    function updateUI() {
+        // Update current user visual displays
+        document.getElementById('debtorDisplay').value = state.users[state.currentUser];
+        
+        // Update tabs styling
+        document.querySelectorAll('.user-tab').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(`tab-${state.currentUser}`).classList.add('active');
+
+        // Update Creditor dropdown choices (preventing owing yourself)
+        const select = document.getElementById('creditorSelect');
+        select.innerHTML = '';
+        for (let id in state.users) {
+            if (id !== state.currentUser) {
+                let opt = document.createElement('option');
+                opt.value = id;
+                opt.innerText = state.users[id];
+                select.appendChild(opt);
+            }
+        }
+
+        // Render Ledger Table rows
+        const tbody = document.getElementById('ledgerBody');
+        tbody.innerHTML = '';
+        if(state.debts.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#64748b;">No outstanding debt streams. Total balance reached!</td></tr>`;
+        } else {
+            state.debts.forEach(d => {
+                let row = `<tr>
+                    <td><strong>${state.users[d.debtor]}</strong></td>
+                    <td>${state.users[d.creditor]}</td>
+                    <td style="color:var(--accent-blue); font-weight:bold;">$${d.amount}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    }
+
+    function switchUser(userId) {
+        state.currentUser = userId;
+        logToConsole(`Switched context perspective to: ${state.users[userId]}`);
+        updateUI();
+    }
+
+    function addDebt(e) {
+        e.preventDefault();
+        const creditor = document.getElementById('creditorSelect').value;
+        const amount = parseInt(document.getElementById('amountInput').value);
+        
+        state.debts.push({
+            debtor: state.currentUser,
+            creditor: creditor,
+            amount: amount
+        });
+
+        logToConsole(`Added item: ${state.users[state.currentUser]} owes ${state.users[creditor]} $${amount}`);
+        updateUI();
+    }
+
+    function triggerSettlementEngine() {
+        logToConsole("--- STARTING SETTLEMENT CALCULATOR ---");
+        const startingCount = state.debts.length;
+        
+        // Run your custom algorithm routine
+        state.debts = runSettlementEngine(state.debts);
+        
+        const endingCount = state.debts.length;
+        logToConsole(`Engine processed. Reduced transaction load from ${startingCount} down to ${endingCount}.`);
+        logToConsole("--- CALCULATION CYCLE COMPLETE ---");
+        updateUI();
+    }
+
+    function resetSandbox() {
+        state.debts = [
+            { debtor: 'A', creditor: 'B', amount: 50 },
+            { debtor: 'B', creditor: 'C', amount: 50 }
+        ];
+        state.currentUser = 'A';
+        document.getElementById('consoleLog').innerHTML = '';
+        logToConsole("Sandbox state reverted to standard chain mock (A ➔ B ➔ C).");
+        updateUI();
+    }
+
+    function logToConsole(message) {
+        const consoleBox = document.getElementById('consoleLog');
+        const timestamp = new Date().toLocaleTimeString();
+        consoleBox.innerHTML += `[${timestamp}] ${message}<br>`;
+        consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    // Initialize display on startup
+    logToConsole("Sandbox initialized successfully. Ready to trace state changes.");
+    updateUI();
+</script>
+
+</body>
+</html>

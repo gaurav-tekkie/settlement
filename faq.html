@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Settlement</title>
+    <style>
+        :root {
+            --bg-color: #1A1D24;
+            --card-color: #232731;
+            --accent-color: #64DFDF;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 0 20px; line-height: 1.6; }
+        header { max-width: 1100px; margin: 0 auto; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; } .logo span { color: var(--accent-color); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 15px; margin-left: 20px; }
+        nav a.active { color: var(--text-main); }
+        
+        .container { max-width: 800px; margin: 60px auto; }
+        h1 { font-size: 36px; margin-bottom: 40px; text-align: center; }
+        
+        .faq-item { margin-bottom: 30px; background: var(--card-color); padding: 25px; border-radius: 12px; }
+		.faq-item h3 { font-size: 18px; margin-bottom: 10px; color: var(--text-main); }
+		.faq-item p, .faq-item ol, .faq-item li { color: var(--text-muted); font-size: 15px; }
+        
+        footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 60px; }
+
+/* --- Append this strictly at the bottom of your existing style tag --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column !important;
+        gap: 15px !important;
+        text-align: center !important;
+        padding: 20px 0 !important;
+    }
+    nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    nav a {
+        margin: 0 10px !important;
+        font-size: 14px !important;
+    }
+    footer {
+        padding: 40px 20px !important;
+        text-align: center !important;
+    }
+    /* Universal fix to make columns stack vertically on mobile */
+    .container, .main-content, .content, .grid {
+        padding: 10px !important;
+        margin-top: 20px !important;
+    }
+    /* If your steps sit in a side-by-side flexbox or grid, force them to stack */
+    div {
+        flex-direction: column !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="settlement-logo.svg" alt="Settlement Logo" style="width: 140px; height: 140px; vertical-align: middle; margin-right: 10px;">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="faq.html" class="active">FAQ</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        
+        <div class="faq-item">
+            <h3>Do I need to know the people I am settling with?</h3>
+            <p>No. While you can use it with close friends, the system can clear your debts by passing the liability safely along transactional paths containing links/nodes you don't personally manage.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Is this a cryptocurrency platform?</h3>
+            <p>No. Settlement uses a secure ledger system structurally modeled after decentralized chains to match and cancel out fiat currency values (USD, EUR, INR, etc.), bypassing volatile crypto tokens completely.</p>
+        </div>
+
+        <div class="faq-item">
+    <h3>How safe is my transaction data?</h3>
+    <p>Extremely safe. Transactions are tokenized cryptographically. Users only see the optimized final balance instructions directly affecting them, keeping your holistic spending network anonymous.</p>
+    
+    <p style="font-weight: bold; margin-top: 15px; color: var(--text-main);">Summary of the "Safe" Flow:</p>
+		<ol style="padding-left: 20px; margin-top: 10px;">
+			<li>User A selects User B (Must be a contact).</li>
+			<li>User A submits debt amount.</li>
+			<li>Backend creates entry with status UNCONFIRMED.</li>
+			<li>Backend sends SMS/Notification to User B.</li>
+			<li>User B logs in, sees the debt, and clicks "Accept."</li>
+			<li>Backend changes status to PENDING (and only then does it become part of the optimization logic).</li>
+		</ol>
+		</div>
+	</div>
+
+    <footer>
+    <p>&copy; 2026 Settlement App. All rights reserved. | <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Settlement</title>
+    <style>
+        :root {
+            --bg-color: #1A1D24;
+            --card-color: #232731;
+            --accent-color: #64DFDF;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 0 20px; line-height: 1.6; }
+        header { max-width: 1100px; margin: 0 auto; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; } .logo span { color: var(--accent-color); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 15px; margin-left: 20px; }
+        nav a.active { color: var(--text-main); }
+        
+        .container { max-width: 800px; margin: 60px auto; }
+        h1 { font-size: 36px; margin-bottom: 20px; text-align: center; }
+        .intro { text-align: center; color: var(--text-muted); font-size: 18px; margin-bottom: 60px; }
+        
+        .step { background: var(--card-color); padding: 30px; border-radius: 12px; margin-bottom: 24px; border-left: 4px solid var(--accent-color); }
+        .step-num { color: var(--accent-color); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .step h3 { margin: 5px 0 10px 0; font-size: 20px; }
+        .step p { color: var(--text-muted); }
+        
+        footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 60px; }
+/* --- Append this strictly at the bottom of your existing style tag --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column !important;
+        gap: 15px !important;
+        text-align: center !important;
+        padding: 20px 0 !important;
+    }
+    nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    nav a {
+        margin: 0 10px !important;
+        font-size: 14px !important;
+    }
+    footer {
+        padding: 40px 20px !important;
+        text-align: center !important;
+    }
+    /* Universal fix to make columns stack vertically on mobile */
+    .container, .main-content, .content, .grid {
+        padding: 10px !important;
+        margin-top: 20px !important;
+    }
+    /* If your steps sit in a side-by-side flexbox or grid, force them to stack */
+    div {
+        flex-direction: column !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="settlement-logo.svg" alt="Settlement Logo" style="width: 140px; height: 140px; vertical-align: middle; margin-right: 10px;">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="how-it-works.html" class="active">How It Works</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Demystifying the Chain</h1>
+        <p class="intro">You don't need to understand blockchain math to save money and time. Here is exactly how Settlement balances the books.</p>
+        
+        <div class="step">
+            <span class="step-num">Step 1</span>
+            <h3>Log Your Balances</h3>
+            <p>Enter what you spent or what you owe. You don't just split tabs with direct friends; you log items within a wider pool ecosystem.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-num">Step 2</span>
+            <h3>The Engine Links the Dots</h3>
+            <p>Our algorithm looks at the entire matrix of user balances. If A owes B ₹10, B owes C ₹10, and C owes A ₹10, the ledger recognizes the loop instantly.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-num">Step 3</span>
+            <h3>The Net Settlement</h3>
+            <p>Instead of three separate clunky money transfers, the app reduces everyone's obligation safely down to ₹0. The system resolves liabilities efficiently across networks of any size.</p>
+        </div>
+    </div>
+
+    <footer>
+    <p>&copy; 2026 Settlement App. All rights reserved. | <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
+</body>
+</html>

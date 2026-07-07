@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Settlement</title>
+    <style>
+        :root {
+            --bg-color: #1A1D24;
+            --card-color: #232731;
+            --accent-color: #64DFDF;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --input-bg: #1E222B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 0 20px; line-height: 1.6; }
+        header { max-width: 1100px; margin: 0 auto; padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; } .logo span { color: var(--accent-color); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 15px; margin-left: 20px; }
+        nav a.active { color: var(--text-main); }
+        
+        .container { max-width: 600px; margin: 60px auto; }
+        h1 { font-size: 36px; margin-bottom: 10px; text-align: center; }
+        .intro { text-align: center; color: var(--text-muted); font-size: 16px; margin-bottom: 40px; }
+        
+        form { background: var(--card-color); padding: 40px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03); }
+        
+        .form-group { margin-bottom: 25px; }
+        label { display: block; color: var(--text-main); font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+        
+        input, textarea {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 14px;
+            color: var(--text-main);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: var(--accent-color);
+        }
+        
+        textarea { height: 150px; resize: vertical; }
+        
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #12151C;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
+        footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 14px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 60px; }
+
+/* --- Append this strictly at the bottom of your existing style tag --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column !important;
+        gap: 15px !important;
+        text-align: center !important;
+        padding: 20px 0 !important;
+    }
+    nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    nav a {
+        margin: 0 10px !important;
+        font-size: 14px !important;
+    }
+    footer {
+        padding: 40px 20px !important;
+        text-align: center !important;
+    }
+    /* Universal fix to make columns stack vertically on mobile */
+    .container, .main-content, .content, .grid {
+        padding: 10px !important;
+        margin-top: 20px !important;
+    }
+    /* If your steps sit in a side-by-side flexbox or grid, force them to stack */
+    div {
+        flex-direction: column !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="settlement-logo.svg" alt="Settlement Logo" style="width: 140px; height: 140px; vertical-align: middle; margin-right: 10px;">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="how-it-works.html">How It Works</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact-us.html" class="active">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Get in Touch</h1>
+        <p class="intro">Have questions about our matching ledger engine or integration partnership? Drop us a message.</p>
+        
+        <!-- Replace 'YOUR_FORM_ID' with the ID you get in Step 2 -->
+<form action="https://formspree.io/f/xjgzovdj" method="POST" id="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Gaurav Gera" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="gaurav@settlement.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+<div style="margin-top: 30px; text-align: center; background: rgba(255, 255, 255, 0.02); padding: 20px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+    <h4 style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-color); margin-bottom: 10px;">Direct Support</h4>
+    <p style="font-size: 15px; color: var(--text-main); margin-bottom: 5px;">
+        📧 <a href="mailto:ggauravgera@gmail.com" style="color: #fff; text-decoration: none; font-weight: 500;">ggauravgera@gmail.com</a>
+    </p>
+    <p style="font-size: 15px; color: var(--text-main);">
+        📞 <a href="tel:(+91) 777 400 1535" style="color: #fff; text-decoration: none; font-weight: 500;">(+91) 777-400-1535</a>
+    </p>
+</div>
+
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Settlement App. All rights reserved. | <a href="privacy.html" style="color: var(--text-muted); text-decoration: underline;">Privacy Policy</a></p>
+    </footer>
+<script>
+    const form = document.getElementById('contact-form');
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Stop page from reloading
+        
+        const button = form.querySelector('.submit-btn');
+        const originalText = button.textContent;
+        button.textContent = 'Sending...';
+        button.disabled = true;
+
+        const data = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                // Smoothly replace the button with a success message
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 40px 0;">
+                        <span style="font-size: 48px; color: var(--accent-color);">✓</span>
+                        <h3 style="margin-top: 15px; color: var(--text-main);">Message Sent !</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 10px;">
+                            Thank you. The Settlement team will review your message and get back to you shortly.
+                        </p>
+                    </div>`;
+            } else {
+                button.textContent = 'Error. Try Again.';
+                button.disabled = false;
+            }
+        } catch (error) {
+            button.textContent = 'Error. Try Again.';
+            button.disabled = false;
+        }
+    });
+</script>
+</body>
+</html>
